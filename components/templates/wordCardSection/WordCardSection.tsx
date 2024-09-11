@@ -1,28 +1,21 @@
 import WordCardSkeleton from "@/components/wordCard/skeleton.tsx/wordCardSkeleton";
 import WordCard from "@/components/wordCard/wordCard";
-import { PaginationResponse } from "@/types/paginationTypes";
-import { WordCardType } from "@/types/wordCardTypes";
-import { Pagination } from "@nextui-org/react";
-import { useQuery } from "@tanstack/react-query";
-import { useSearchParams } from "next/navigation";
+import { Pagination, Spinner } from "@nextui-org/react";
 import React from "react";
+import useWordCard from "@/hooks/wordCard/useWordCard";
 
 const WordCardSection = () => {
-  const searchParams = useSearchParams();
+  const {
+    isPending,
+    isPlaceholderData,
+    wordDataList,
+    handlePagination,
+    is404,
+    is500,
+    error,
+  } = useWordCard();
 
-  const searchParam = searchParams.get("q") || "";
-
-  const fetchUrl = new URL("/jisho/search", process.env.NEXT_PUBLIC_API_DOMAIN);
-  fetchUrl.searchParams.set("word", searchParam);
-
-  const { isPending, error, data } = useQuery<PaginationResponse<WordCardType>>(
-    {
-      queryKey: ["repoData"],
-      queryFn: () => fetch(fetchUrl.href).then((res) => res.json()),
-    }
-  );
-
-  if (isPending)
+  if (isPending && !isPlaceholderData) {
     return (
       <>
         <WordCardSkeleton />
@@ -30,10 +23,29 @@ const WordCardSection = () => {
         <WordCardSkeleton />
       </>
     );
+  }
 
-  if (error) return "An error has occurred: " + error.message;
+  if (isPlaceholderData) {
+    return (
+      <>
+        <Spinner />
+      </>
+    );
+  }
 
-  const wordItems = data.items;
+  if (is404) {
+    return <p>404</p>;
+  }
+
+  if (is500) {
+    return <p>500</p>;
+  }
+
+  if (error) {
+    return "An error has occurred: " + error.message;
+  }
+
+  const wordItems = wordDataList!.items;
 
   return (
     <>
@@ -45,14 +57,16 @@ const WordCardSection = () => {
           meanings={wordItem.meanings}
         />
       ))}
-      {data.hasPagination && (
+      {wordDataList!.hasPagination && (
         <Pagination
           showControls
-          total={data.pageCount}
+          total={wordDataList!.pageCount}
           initialPage={1}
+          page={wordDataList?.page}
+          onChange={handlePagination}
           variant="light"
           size="lg"
-          className="mx-auto"
+          className="mx-auto mt-auto p-4"
         />
       )}
     </>
