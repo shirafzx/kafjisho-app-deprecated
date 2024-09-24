@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PageIndex } from "@/constants/pagination";
 import { PaginationResponse } from "@/types/paginationTypes";
 import { WordCardType } from "@/types/wordCardTypes";
@@ -48,17 +48,14 @@ const useWordCard = () => {
     });
   };
 
-  const handleSearch = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      setFilter((prev) => ({ ...prev, word: text, page: PageIndex }));
-    },
-    [text]
-  );
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFilter((prev) => ({ ...prev, word: text, page: PageIndex }));
+  };
 
-  const handlePagination = useCallback((page: number) => {
+  const handlePagination = (page: number) => {
     setFilter((prev) => ({ ...prev, page }));
-  }, []);
+  };
 
   useEffect(() => {
     setFilter({ word, page });
