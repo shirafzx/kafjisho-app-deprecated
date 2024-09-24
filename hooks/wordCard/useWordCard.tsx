@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { PageIndex } from "@/constants/pagination";
 import { PaginationResponse } from "@/types/paginationTypes";
 import { WordCardType } from "@/types/wordCardTypes";
@@ -12,16 +12,18 @@ type FetchWordsFilter = {
 };
 
 const useWordCard = () => {
-  const router = useRouter();
   const searchParams = useSearchParams();
+  const router = useRouter();
+
   const word = searchParams.get("q") || "";
-  const page = searchParams.get("page") || PageIndex;
+  const page = Number(searchParams.get("page")) || PageIndex;
+  const [text, setText] = useState<string>(word);
   const [filter, setFilter] = useState<FetchWordsFilter>({
     word,
-    page: Number(page),
+    page,
   });
 
-  const fetchWords = useCallback(async (filter: FetchWordsFilter) => {
+  const fetchWords = async (): Promise<PaginationResponse<WordCardType>> => {
     const fetchUrl = new URL(
       "/jisho/search",
       process.env.NEXT_PUBLIC_API_DOMAIN
@@ -34,42 +36,49 @@ const useWordCard = () => {
     };
     const response = await axios.get(fetchUrl.href, requestConfig);
     return response.data;
+  };
+
+  const useWords = () => {
+    return useQuery({
+      queryKey: ["words", filter.word, filter.page],
+      queryFn: () => fetchWords(),
+      enabled: !!word,
+      retry: 1,
+      placeholderData: keepPreviousData,
+    });
+  };
+
+  const handleSearch = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      setFilter((prev) => ({ ...prev, word: text, page: PageIndex }));
+    },
+    [text]
+  );
+
+  const handlePagination = useCallback((page: number) => {
+    setFilter((prev) => ({ ...prev, page }));
   }, []);
 
-  const { isPending, isPlaceholderData, error, data } = useQuery<
-    PaginationResponse<WordCardType>
-  >({
-    queryKey: ["words", filter],
-    queryFn: () => fetchWords(filter),
-    retry: 1,
-    placeholderData: keepPreviousData,
-  });
+  useEffect(() => {
+    setFilter({ word, page });
+  }, [word, page]);
 
   useEffect(() => {
-    router.replace(`?q=${filter.word}&page=${filter.page}`);
-  }, [filter, router]);
-
-  const handleSearch = (word: string) => {
-    setFilter((prev) => ({ ...prev, word, page: PageIndex }));
-  };
-
-  const handlePagination = (page: number) => {
-    setFilter((prev) => ({ ...prev, page }));
-  };
-
-  const is404 = axios.isAxiosError(error) && error.response?.status === 404;
-  const is500 = axios.isAxiosError(error) && error.response?.status === 500;
+    if (word) {
+      router.push(`?q=${filter.word}&page=${filter.page}`);
+    }
+  }, [filter.word, filter.page, word, router]);
 
   return {
-    wordDataList: data,
-    isPending,
-    isPlaceholderData,
-    is404,
-    is500,
-    error,
+    word,
+    text,
+    setText,
+    filter,
+    setFilter,
+    useWords,
     handleSearch,
     handlePagination,
-    filter,
   };
 };
 

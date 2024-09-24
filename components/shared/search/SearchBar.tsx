@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { FC } from "react";
 import { Button, Tooltip } from "@nextui-org/react";
 
 import { cn } from "@/libs/utils";
@@ -9,18 +9,13 @@ import TextInput from "./textInput";
 import { JapaneseIcon, SearchIcon } from "../Icons";
 
 type SearchBarProps = {
-  query: string;
+  text: string;
+  setText: (text: string) => void;
 };
 
-export default function SearchBar({ query }: SearchBarProps) {
-  const [text, setText] = React.useState<string>(query);
-
-  const handleSearch = () => {
-    console.log(text);
-  };
-
+const SearchBar: FC<SearchBarProps> = ({ text, setText }) => {
   return (
-    <form className="flex w-full items-center gap-2">
+    <div className="flex w-full items-center gap-2">
       <TextInput
         classNames={{
           innerWrapper: "items-center",
@@ -50,7 +45,7 @@ export default function SearchBar({ query }: SearchBarProps) {
           isDisabled={!text}
           radius="full"
           variant={!text ? "flat" : "solid"}
-          onClick={handleSearch}
+          type="submit"
         >
           <SearchIcon
             size={20}
@@ -61,6 +56,8 @@ export default function SearchBar({ query }: SearchBarProps) {
           />
         </Button>
       </Tooltip>
-    </form>
+    </div>
   );
-}
+};
+
+export default SearchBar;

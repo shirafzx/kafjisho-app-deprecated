@@ -6,10 +6,6 @@ export const MenuLinks: MenuLink[] = [
     label: "Home",
   },
   {
-    route: "/search",
-    label: "Search",
-  },
-  {
     route: "/about",
     label: "About",
   },
