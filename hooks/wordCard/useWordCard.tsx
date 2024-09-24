@@ -50,12 +50,13 @@ const useWordCard = () => {
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFilter((prev) => ({ ...prev, word: text, page: PageIndex }));
-    router.replace(`search?q=${text}&page=${PageIndex}`);
+    if (word !== text) {
+      router.replace(`search?q=${text}`);
+    }
   };
 
   const handlePagination = (page: number) => {
-    setFilter((prev) => ({ ...prev, page }));
+    router.replace(`search?q=${text}&page=${page}`);
   };
 
   useEffect(() => {
