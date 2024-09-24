@@ -4,6 +4,7 @@ import type { NavbarProps } from "@nextui-org/react";
 
 import React from "react";
 import {
+  cn,
   Navbar as NextNavbar,
   NavbarBrand,
   NavbarContent,
@@ -18,7 +19,6 @@ import {
 } from "@nextui-org/react";
 import NextLink from "next/link";
 
-import { cn } from "@/libs/utils";
 import { DiscordIcon, TwitterIcon } from "../Icons";
 import { MenuLinks } from "@/constants/menus";
 import { usePathname } from "next/navigation";

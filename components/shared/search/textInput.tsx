@@ -1,11 +1,9 @@
 "use client";
 
-import type { TextAreaProps, InputProps } from "@nextui-org/react";
+import type { InputProps } from "@nextui-org/react";
 
 import React from "react";
-import { Input, Textarea } from "@nextui-org/react";
-
-import { cn } from "@/libs/utils";
+import { cn, Input } from "@nextui-org/react";
 
 const TextInput = React.forwardRef<HTMLInputElement, InputProps>(
   ({ classNames = {}, ...props }, ref) => {
@@ -19,7 +17,6 @@ const TextInput = React.forwardRef<HTMLInputElement, InputProps>(
           label: cn("hidden", classNames?.label),
           input: cn("py-0", classNames?.input),
         }}
-        // minRows={1}
         placeholder="Enter a text here"
         radius="lg"
         variant="bordered"

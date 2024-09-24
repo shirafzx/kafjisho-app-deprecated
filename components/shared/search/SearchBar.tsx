@@ -1,9 +1,7 @@
 "use client";
 
 import React, { FC } from "react";
-import { Button, Tooltip } from "@nextui-org/react";
-
-import { cn } from "@/libs/utils";
+import { cn, Button, Tooltip } from "@nextui-org/react";
 
 import TextInput from "./textInput";
 import { JapaneseIcon, SearchIcon } from "../Icons";
