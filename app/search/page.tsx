@@ -1,26 +1,30 @@
 "use client";
 
 import Container from "@/components/shared/container/Container";
-import SearchBar from "@/components/shared/search/SearchBar";
+import SearchSection from "@/components/shared/search/SearchSection";
+
 import WordCardSection from "@/components/templates/wordCardSection/WordCardSection";
-import useWordCard from "@/hooks/wordCard/useWordCard";
 import { redirect } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 
-const Search = () => {
-  const { word, text, setText, handleSearch } = useWordCard();
+const Search = ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) => {
+  const wordQuery = searchParams.q;
 
-  if (!word) {
+  if (!wordQuery) {
     redirect("/");
   }
 
   return (
     <>
       <Container className="gap-4">
-        <form onSubmit={(e) => handleSearch(e)}>
-          <SearchBar text={text} setText={setText} />
-        </form>
-        <WordCardSection />
+        <Suspense>
+          <SearchSection />
+          <WordCardSection />
+        </Suspense>
       </Container>
     </>
   );

@@ -49,7 +49,7 @@ const HeroSection = () => {
           radius="full"
           variant="bordered"
         >
-          See our plans
+          See Demo
         </Button>
       </div>
     </section>
