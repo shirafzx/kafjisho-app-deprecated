@@ -4,23 +4,17 @@ ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 
-FROM base AS deps
+COPY . /app
 WORKDIR /app
 
 COPY package.json pnpm-lock.yaml* ./
+
 RUN pnpm install --frozen-lockfile
 
-FROM base AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN pnpm build
 
-FROM base AS runner
-WORKDIR /app
-COPY --from=builder /app/.next/standalone ./
+RUN pnpm run build
 
 EXPOSE 3000
-ENV PORT=3000
 
-CMD ["node", "server.js"]
+CMD ["pnpm", "start"]
