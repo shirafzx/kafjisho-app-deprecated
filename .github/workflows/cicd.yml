@@ -24,7 +24,6 @@ jobs:
         uses: "google-github-actions/auth@v2"
         with:
           credentials_json: "${{ secrets.CLOUD_RUN_SERVICE_ACCOUNT }}"
-          project_id: ${{ secrets.CLOUD_RUN_PROJECT_NAME }}
 
       # Setup gcloud CLI/SDK
       - name: Set up Cloud SDK
