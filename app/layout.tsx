@@ -5,6 +5,7 @@ import "./globals.css";
 import { Providers } from "@/app/providers";
 import Navbar from "@/components/shared/navbar/Navbar";
 import { Link } from "@nextui-org/react";
+import NextTopLoader from "nextjs-toploader";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -35,6 +36,17 @@ export default function RootLayout({
           ${inter.variable} ${prompt.variable}`}
       >
         <Providers>
+          <NextTopLoader
+            color="#e72881"
+            initialPosition={0.08}
+            crawlSpeed={200}
+            height={3}
+            crawl={true}
+            showSpinner={false}
+            easing="ease"
+            speed={200}
+            shadow="0 0 10px #e72881,0 0 5px #e72881"
+          />
           <div className="relative flex h-screen flex-col">
             {/* <Banner /> */}
             <Navbar />
