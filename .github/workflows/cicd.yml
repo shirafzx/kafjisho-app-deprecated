@@ -5,6 +5,7 @@ on:
     branches:
       - main
 
+
 env:
   PROJECT_ID: ${{ secrets.CLOUD_RUN_PROJECT_NAME }}
   REGION: asia-southeast1
