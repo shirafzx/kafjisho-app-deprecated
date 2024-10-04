@@ -33,7 +33,7 @@ jobs:
 
       - name: Build and tag the docker image
         run: |-
-          docker build 
+          docker build . \
           --build-arg NEXT_PUBLIC_API_DOMAIN=${{ secrets.NEXT_PUBLIC_API_DOMAIN }} \
           --tag gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA .
 
