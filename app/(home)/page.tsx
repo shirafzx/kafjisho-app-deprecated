@@ -12,7 +12,7 @@ export default function Home() {
       <Suspense fallback={<SearchBarSkeleton />}>
         <SearchSection />
       </Suspense>
-      <p>{process.env.NEXT_PUBLIC_API_DOMAIN}</p>
+      <p>ENV = {process.env.NEXT_PUBLIC_API_DOMAIN}</p>
       <HeroSection />
     </Container>
   );
