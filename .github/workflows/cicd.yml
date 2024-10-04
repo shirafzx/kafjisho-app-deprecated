@@ -34,7 +34,7 @@ jobs:
       - name: Build and tag the docker image
         run: |-
           docker build 
-          --build-arg NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} \
+          --build-arg NEXT_PUBLIC_API_DOMAIN=${{ secrets.NEXT_PUBLIC_API_DOMAIN }} \
           --tag gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA .
 
       - name: Push the image to the Google Container Registry (GCR)
