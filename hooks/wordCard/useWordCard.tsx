@@ -45,6 +45,7 @@ const useWordCard = () => {
       enabled: !!word,
       retry: 1,
       placeholderData: keepPreviousData,
+      refetchOnWindowFocus: false,
     });
   };
 
