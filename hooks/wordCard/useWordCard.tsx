@@ -57,7 +57,7 @@ const useWordCard = () => {
   };
 
   const handlePagination = (page: number) => {
-    router.replace(`search?q=${text}&page=${page}`);
+    router.replace(`search?q=${word}&page=${page}`);
   };
 
   useEffect(() => {
