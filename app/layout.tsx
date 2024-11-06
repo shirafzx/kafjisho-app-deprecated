@@ -1,11 +1,12 @@
-import React from "react";
+import { Link } from "@nextui-org/react";
 import type { Metadata } from "next";
 import { Inter, Prompt } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
+import React from "react";
+
 import "./globals.css";
 import { Providers } from "@/app/providers";
 import Navbar from "@/components/shared/navbar/Navbar";
-import { Link } from "@nextui-org/react";
-import NextTopLoader from "nextjs-toploader";
 
 const inter = Inter({
   subsets: ["latin"],

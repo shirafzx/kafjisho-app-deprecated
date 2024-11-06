@@ -1,6 +1,6 @@
-import React from "react";
-import { Button, Link } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
+import { Button, Link } from "@nextui-org/react";
+import React from "react";
 
 const Banner = () => {
   return (

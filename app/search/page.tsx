@@ -1,11 +1,11 @@
 "use client";
 
-import Container from "@/components/shared/container/Container";
-import SearchSection from "@/components/shared/search/SearchSection";
-
-import WordCardSection from "@/components/templates/wordCardSection/WordCardSection";
 import { redirect } from "next/navigation";
 import React, { Suspense } from "react";
+
+import Container from "@/components/shared/container/Container";
+import SearchSection from "@/components/shared/search/SearchSection";
+import WordCardSection from "@/components/templates/wordCardSection/WordCardSection";
 
 const Search = ({
   searchParams,

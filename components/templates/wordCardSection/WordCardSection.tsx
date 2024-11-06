@@ -1,7 +1,8 @@
-import WordCardSkeleton from "@/components/wordCard/skeleton.tsx/wordCardSkeleton";
-import WordCard from "@/components/wordCard/wordCard";
 import { Pagination, Spinner } from "@nextui-org/react";
 import React from "react";
+
+import WordCardSkeleton from "@/components/wordCard/skeleton.tsx/wordCardSkeleton";
+import WordCard from "@/components/wordCard/wordCard";
 import useWordCard from "@/hooks/wordCard/useWordCard";
 
 const WordCardSection = () => {

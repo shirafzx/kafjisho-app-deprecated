@@ -1,7 +1,8 @@
-import React from "react";
 import type { CardProps } from "@nextui-org/react";
 import { Card, CardBody, CardFooter, Avatar, Chip } from "@nextui-org/react";
 import Image from "next/image";
+import React from "react";
+
 import { MeaningsType } from "@/types/wordCardTypes";
 
 type WordCardProps = {

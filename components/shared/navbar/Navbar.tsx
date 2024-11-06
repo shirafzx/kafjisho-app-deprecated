@@ -1,8 +1,6 @@
 "use client";
 
 import type { NavbarProps } from "@nextui-org/react";
-
-import React from "react";
 import {
   cn,
   Navbar as NextNavbar,
@@ -17,14 +15,17 @@ import {
   Divider,
   link as linkStyles,
 } from "@nextui-org/react";
+import clsx from "clsx";
+import Image from "next/image";
 import NextLink from "next/link";
+import { usePathname } from "next/navigation";
+import React from "react";
+
+import ThemeSwitch from "@/components/shared/navbar/ThemeSwitch";
+import { MenuLinks } from "@/constants/menus";
 
 import { DiscordIcon, TwitterIcon } from "../Icons";
-import { MenuLinks } from "@/constants/menus";
-import { usePathname } from "next/navigation";
-import Image from "next/image";
-import ThemeSwitch from "@/components/shared/navbar/ThemeSwitch";
-import clsx from "clsx";
+
 
 const menuItems = [
   "About",

@@ -1,9 +1,8 @@
 "use client";
 
 import type { InputProps } from "@nextui-org/react";
-
-import React from "react";
 import { cn, Input } from "@nextui-org/react";
+import React from "react";
 
 const TextInput = React.forwardRef<HTMLInputElement, InputProps>(
   ({ classNames = {}, ...props }, ref) => {

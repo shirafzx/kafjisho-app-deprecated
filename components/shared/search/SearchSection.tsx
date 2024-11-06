@@ -1,8 +1,9 @@
 "use client";
+import React from "react";
+
 import SearchBar from "@/components/shared/search/SearchBar";
 import useWordCard from "@/hooks/wordCard/useWordCard";
 
-import React from "react";
 
 const SearchSection = () => {
   const { text, setText, handleSearch } = useWordCard();
