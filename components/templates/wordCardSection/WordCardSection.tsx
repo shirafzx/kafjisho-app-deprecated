@@ -1,7 +1,8 @@
-import WordCardSkeleton from "@/components/wordCard/skeleton.tsx/wordCardSkeleton";
-import WordCard from "@/components/wordCard/wordCard";
 import { Pagination, Spinner } from "@nextui-org/react";
 import React from "react";
+
+import WordCardSkeleton from "@/components/wordCard/skeleton.tsx/wordCardSkeleton";
+import WordCard from "@/components/wordCard/wordCard";
 import useWordCard from "@/hooks/wordCard/useWordCard";
 
 const WordCardSection = () => {
@@ -18,14 +19,6 @@ const WordCardSection = () => {
     );
   }
 
-  if (isPlaceholderData) {
-    return (
-      <>
-        <Spinner />
-      </>
-    );
-  }
-
   if (error) {
     return "An error has occurred: " + error.message;
   }
@@ -35,6 +28,11 @@ const WordCardSection = () => {
 
   return (
     <>
+      {isPlaceholderData && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <Spinner />
+        </div>
+      )}
       {wordItems.map((wordItem) => (
         <WordCard
           key={wordItem.id}

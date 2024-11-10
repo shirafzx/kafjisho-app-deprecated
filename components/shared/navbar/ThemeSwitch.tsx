@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
-import { SunFilledIcon, MoonFilledIcon } from "@/components/shared/Icons";
 import { Spinner } from "@nextui-org/react";
-import { flushSync } from "react-dom";
 import { useIsSSR } from "@react-aria/ssr";
+import { useTheme } from "next-themes";
+import React, { useEffect, useState } from "react";
+import { flushSync } from "react-dom";
+
+import { SunFilledIcon, MoonFilledIcon } from "@/components/shared/Icons";
+
 
 const ThemeSwitch = () => {
   const { theme, setTheme } = useTheme();

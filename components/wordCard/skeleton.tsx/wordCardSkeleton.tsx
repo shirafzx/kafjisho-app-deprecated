@@ -1,5 +1,5 @@
-import React from "react";
 import { Card, Skeleton } from "@nextui-org/react";
+import React from "react";
 
 const WordCardSkeleton = () => {
   return (

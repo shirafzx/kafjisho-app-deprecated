@@ -6,15 +6,41 @@
     "plugin:tailwindcss/recommended",
     "prettier"
   ],
+  "plugins": ["import"],
   "rules": {
-    "max-len": [2, 250],
-    "no-multiple-empty-lines": [
+    "import/order": [
       "error",
       {
-        "max": 1,
-        "maxEOF": 1
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          ["parent", "sibling"],
+          "index",
+          "object"
+        ],
+        "newlines-between": "always",
+        "pathGroups": [
+          {
+            "pattern": "@app/**",
+            "group": "external",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
       }
-    ],
-    "object-curly-newline": 0
-  }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "no-undef": "off"
+      }
+    }
+  ]
 }

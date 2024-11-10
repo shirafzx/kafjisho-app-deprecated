@@ -2,6 +2,8 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { Button } from "@nextui-org/react";
 import React from "react";
 
+import MusicPlayerCard from "@/components/musicPlayerCard/MusicPlayerCard";
+
 const HeroSection = () => {
   return (
     <section className="z-20 flex flex-col items-center justify-center gap-[18px] sm:gap-6">
@@ -21,14 +23,16 @@ const HeroSection = () => {
       </Button>
       <div className="text-center text-[clamp(40px,10vw,44px)] font-bold leading-[1.2] tracking-tighter sm:text-[64px]">
         <div className="bg-hero-section-title bg-clip-text text-transparent">
-          Easiest and Minimal <br /> Japanese Thai Dictionary.
+          Be More Than Just
+          <br />
+          Japanese Thai Dictionary.
         </div>
       </div>
       <p className="text-center font-normal leading-7 text-default-500 sm:w-[466px] sm:text-[18px]">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio,
-        voluptatum.
+        Easiest and Minimal Japanese Thai Dictionary.
+        <br /> Inspired by KAF - 花譜
       </p>
-      <div className="flex flex-col items-center justify-center gap-6 sm:flex-row">
+      {/* <div className="flex flex-col items-center justify-center gap-6 sm:flex-row">
         <Button
           className="h-10 w-[163px] bg-default-foreground px-[16px] py-[10px] text-small font-medium leading-5 text-background"
           radius="full"
@@ -51,7 +55,13 @@ const HeroSection = () => {
         >
           See Demo
         </Button>
-      </div>
+      </div> */}
+      <MusicPlayerCard
+        title="ゲシュタルト - GESTALT"
+        album="GSA"
+        singer="花譜 - KAF"
+        duration={199}
+      />
     </section>
   );
 };
