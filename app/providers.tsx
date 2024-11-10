@@ -16,7 +16,7 @@ export function Providers({ children }: ProvidersProps) {
 
   return (
     <NextUIProvider navigate={router.push}>
-      <NextThemesProvider defaultTheme="system">
+      <NextThemesProvider defaultTheme="system" attribute="class">
         <QueryClientProvider client={queryClient}>
           {children}
         </QueryClientProvider>
