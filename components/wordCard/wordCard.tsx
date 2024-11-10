@@ -42,11 +42,18 @@ const WordCard = ({ kanji, furigana, meanings, cardProps }: WordCardProps) => {
             }
           />
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-col gap-2">
           {thaiMeanings.map((meaning) => (
-            <span key={meaning} className="paragraph-regular text-default-500">
-              {meaning}
-            </span>
+            <div
+              key={meaning}
+              className="flex w-3/4 flex-col gap-1 p-4 max-md:w-full"
+            >
+              <p className="paragraph-regular text-default-600">{meaning}</p>
+              <p className="paragraph-regular text-default-300">
+                騒がしいホームで 誰かが 私の 名前を 呼んでいるのが 聞こえた。 I
+                could hear someone calling my name on the noisy platform.
+              </p>
+            </div>
           ))}
         </div>
       </CardBody>

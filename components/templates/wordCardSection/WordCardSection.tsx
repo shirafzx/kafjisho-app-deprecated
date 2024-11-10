@@ -19,14 +19,6 @@ const WordCardSection = () => {
     );
   }
 
-  if (isPlaceholderData) {
-    return (
-      <>
-        <Spinner />
-      </>
-    );
-  }
-
   if (error) {
     return "An error has occurred: " + error.message;
   }
@@ -36,6 +28,11 @@ const WordCardSection = () => {
 
   return (
     <>
+      {isPlaceholderData && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <Spinner />
+        </div>
+      )}
       {wordItems.map((wordItem) => (
         <WordCard
           key={wordItem.id}
